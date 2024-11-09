@@ -9,7 +9,8 @@ public class PlayerManager : MonoBehaviour
 
     public int playerHealth = 3;
     public int coin = 0;
-    
+    public int playerId;
+
     public bool isDead = false;
 
     private PlayerMovement playerMovement;
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        
         playerMovement = GetComponent<PlayerMovement>(); // 如果有2个玩家怎么办？
     }
 
@@ -49,10 +51,10 @@ public class PlayerManager : MonoBehaviour
     public void Dead()
     {
         isDead = true;
-        
+
         // 死亡事件触发
-
-
+        EventCenter.Instance.TriggerEvent("DeathEvent");
+        //ResetGame();
         Debug.Log("You are dead!");
     }
 
@@ -60,5 +62,12 @@ public class PlayerManager : MonoBehaviour
     public void Win()
     {
         Debug.Log("You win!");
+    }
+
+    //重置
+    public void ResetGame()
+    {
+        playerHealth = 3; // 重置生命值为初始值
+        coin = 0;         // 重置金币数量
     }
 }

@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
 
     public Sound[] sounds;  
 
-    private  Dictionary<string,AudioSource> audioSourcesDic;
+    private  Dictionary<string,AudioSource> audioSourcesDic;//audioSourcesDic 是一个私有的字典，用于存储声音名称和对应的AudioSource组件。
 
     void Awake()
     {
@@ -34,6 +34,7 @@ public class SoundManager : MonoBehaviour
         }
 
         // 订阅死亡事件
+        EventCenter.Instance.Subscribe("DeathEvent", PlayerDeathSound);
     }
 
     public void Play(string soundName, float volume = 1, bool loop = false)

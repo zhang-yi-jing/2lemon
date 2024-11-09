@@ -56,7 +56,7 @@ public class EventCenter:MonoBehaviour
     }
 
     // 触发事件
-    public void TriggerEvent(string eventType)
+    public void TriggerEvent(string eventType)//它用于触发指定事件类型对应的所有监听器
     {
         if (eventTable.ContainsKey(eventType))
         {

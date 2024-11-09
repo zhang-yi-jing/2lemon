@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
 
         // 订阅死亡事件
+        EventCenter.Instance.Subscribe("DeathEvent", Dead);
     }
 
     void FixedUpdate()
@@ -99,4 +100,9 @@ public class PlayerMovement : MonoBehaviour
         m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
         m_Rigidbody.MoveRotation(m_Rotation);
     }
+
+    //public void ResetPlayer()
+    //{
+    //    m_Animator.SetTrigger("Death");
+    //}
 }
